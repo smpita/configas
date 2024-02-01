@@ -2,20 +2,12 @@
 
 namespace Smpita\ConfigAs\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Smpita\ConfigAs\Tests\Stubs\ClassStub;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Smpita\\ConfigAs\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
-
     protected function getPackageProviders($app)
     {
         return [];
@@ -23,11 +15,14 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
-        config()->set('database.default', 'testing');
-
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_typeas-laravel_table.php.stub';
-        $migration->up();
-        */
+        Config::set('database.default', 'testing');
+        Config::set('testing', [
+            'array' => ['foo'],
+            'class' => new ClassStub(),
+            'float' => 123.456,
+            'int' => 123,
+            'nullable' => null,
+            'string' => 'foo',
+        ]);
     }
 }
