@@ -5,7 +5,3 @@ parameters:
         - tests
     tmpDir: build/phpstan
     checkMissingIterableValueType: false
-    ignoreErrors:
-        -
-            message: '#Call to an undefined method Pest\\PendingCalls\\TestCall::expect\(\)#'
-            path: tests/ArchTest.php
