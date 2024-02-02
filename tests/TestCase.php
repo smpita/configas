@@ -18,6 +18,7 @@ class TestCase extends Orchestra
         Config::set('database.default', 'testing');
         Config::set('testing', [
             'array' => ['foo'],
+            'bool' => true,
             'class' => new ClassStub(),
             'float' => 123.456,
             'int' => 123,

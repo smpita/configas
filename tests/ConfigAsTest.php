@@ -3,10 +3,16 @@
 use Smpita\ConfigAs\ConfigAs;
 use Smpita\ConfigAs\Exceptions\ConfigAsResolutionException;
 use Smpita\ConfigAs\Tests\Stubs\ClassStub;
+use Smpita\TypeAs\Contracts\BoolResolver;
 
 it('can handle arrays', function () {
     $value = staticArrayTest(ConfigAs::array('testing.array'));
     expect($value)->toBeArray();
+});
+
+it('can handle bools', function () {
+    $value = staticBoolTest(ConfigAs::bool('testing.bool'));
+    expect($value)->toBeBool();
 });
 
 it('can handle classes', function () {
@@ -26,6 +32,11 @@ it('can handle ints', function () {
 
 it('can handle nullable arrays', function () {
     $value = staticNullableArrayTest(ConfigAs::nullableArray('testing.nullable'));
+    expect($value)->toBeNull();
+});
+
+it('can handle nullable bools', function () {
+    $value = staticNullableBoolTest(ConfigAs::nullableBool('testing.nullable'));
     expect($value)->toBeNull();
 });
 
@@ -58,6 +69,10 @@ it('throws exception when not array', function () {
     ConfigAs::array('testing.nullable');
 })->throws(ConfigAsResolutionException::class);
 
+it('throws exception when not bool', function () {
+    ConfigAs::bool('testing.nullable', null, new FakeBoolResolverStub());
+})->throws(ConfigAsResolutionException::class);
+
 it('throws exception when not class', function () {
     ConfigAs::class(ClassStub::class, 'testing.nullable');
 })->throws(ConfigAsResolutionException::class);
@@ -79,6 +94,11 @@ function staticArrayTest(array $value): array
     return $value;
 }
 
+function staticBoolTest(bool $value): bool
+{
+    return $value;
+}
+
 function staticClassTest(ClassStub $value): ClassStub
 {
     return $value;
@@ -95,6 +115,11 @@ function staticIntTest(int $value): int
 }
 
 function staticNullableArrayTest(?array $value): ?array
+{
+    return $value;
+}
+
+function staticNullableBoolTest(?bool $value): ?bool
 {
     return $value;
 }
@@ -122,4 +147,12 @@ function staticNullableStringTest(?string $value): ?string
 function staticStringTest(string $value): string
 {
     return $value;
+}
+
+class FakeBoolResolverStub implements BoolResolver
+{
+    public function resolve(mixed $value, ?bool $default = null): bool
+    {
+        throw new UnexpectedValueException();
+    }
 }
