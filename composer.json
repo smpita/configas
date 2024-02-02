@@ -40,7 +40,10 @@
     "autoload-dev": {
         "psr-4": {
             "Smpita\\ConfigAs\\Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "src/Helpers.php"
+        ]
     },
     "scripts": {
         "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
