@@ -92,6 +92,8 @@ $typed = ConfigAs::freshString('config.key')
 
 #### Forgetting
 
+[SIGNATURES#forgetting](docs/signatures.md#forgetting)
+
 For each type, you can forget any given cached value.
 
 ```php
