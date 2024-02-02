@@ -3,6 +3,7 @@
 namespace Smpita\ConfigAs;
 
 use Illuminate\Support\Facades\Config;
+use Smpita\ConfigAs\Exceptions\ConfigAsResolutionException;
 use Smpita\TypeAs\Contracts\ArrayResolver;
 use Smpita\TypeAs\Contracts\ClassResolver;
 use Smpita\TypeAs\Contracts\FloatResolver;
@@ -23,7 +24,11 @@ class ConfigAs
      */
     public static function array(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
     {
-        return TypeAs::array(Config::get($key, $default), false, $resolver);
+        try {
+            return TypeAs::array(Config::get($key, $default), false, $resolver);
+        } catch (TypeAsResolutionException $e) {
+            throw new ConfigAsResolutionException("$key was not an array", 0, $e);
+        }
     }
 
     /**
@@ -37,7 +42,11 @@ class ConfigAs
      */
     public static function class(string $class, string $key, ?object $default = null, ?ClassResolver $resolver = null)
     {
-        return TypeAs::class($class, Config::get($key), $default, $resolver);
+        try {
+            return TypeAs::class($class, Config::get($key), $default, $resolver);
+        } catch (TypeAsResolutionException $e) {
+            throw new ConfigAsResolutionException("$key was not the class $class", 0, $e);
+        }
     }
 
     /**
@@ -45,7 +54,11 @@ class ConfigAs
      */
     public static function float(string $key, ?float $default = null, ?FloatResolver $resolver = null): float
     {
-        return TypeAs::float(Config::get($key, $default), $default, $resolver);
+        try {
+            return TypeAs::float(Config::get($key, $default), $default, $resolver);
+        } catch (TypeAsResolutionException $e) {
+            throw new ConfigAsResolutionException("$key was not a float", 0, $e);
+        }
     }
 
     /**
@@ -53,7 +66,11 @@ class ConfigAs
      */
     public static function int(string $key, ?int $default = null, ?IntResolver $resolver = null): int
     {
-        return TypeAs::int(Config::get($key, $default), $default, $resolver);
+        try {
+            return TypeAs::int(Config::get($key, $default), $default, $resolver);
+        } catch (TypeAsResolutionException $e) {
+            throw new ConfigAsResolutionException("$key was not an int", 0, $e);
+        }
     }
 
     public static function nullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null): ?array
@@ -93,6 +110,10 @@ class ConfigAs
      */
     public static function string(string $key, ?string $default = null, ?StringResolver $resolver = null): string
     {
-        return TypeAs::string(Config::get($key, $default), $default, $resolver);
+        try {
+            return TypeAs::string(Config::get($key, $default), $default, $resolver);
+        } catch (TypeAsResolutionException $e) {
+            throw new ConfigAsResolutionException("$key was not a string", 0, $e);
+        }
     }
 }
