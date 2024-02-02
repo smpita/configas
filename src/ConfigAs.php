@@ -30,7 +30,7 @@ class ConfigAs
         try {
             return TypeAs::array(Config::get($key, $default), false, $resolver);
         } catch (UnexpectedValueException $e) {
-            throw new ConfigAsResolutionException("config($key) is not an array", 0, $e);
+            throw new ConfigAsResolutionException("config('$key') is not an array", 0, $e);
         }
     }
 
@@ -42,7 +42,7 @@ class ConfigAs
         try {
             return TypeAs::bool(Config::get($key, $default), false, $resolver);
         } catch (UnexpectedValueException $e) {
-            throw new ConfigAsResolutionException("config($key) is not a boolean", 0, $e);
+            throw new ConfigAsResolutionException("config('$key') is not a boolean", 0, $e);
         }
     }
 
@@ -60,7 +60,7 @@ class ConfigAs
         try {
             return TypeAs::class($class, Config::get($key), $default, $resolver);
         } catch (UnexpectedValueException $e) {
-            throw new ConfigAsResolutionException("config($key) is not the class $class", 0, $e);
+            throw new ConfigAsResolutionException("config('$key') is not the class $class", 0, $e);
         }
     }
 
@@ -72,7 +72,7 @@ class ConfigAs
         try {
             return TypeAs::float(Config::get($key, $default), $default, $resolver);
         } catch (UnexpectedValueException $e) {
-            throw new ConfigAsResolutionException("config($key) is not a float", 0, $e);
+            throw new ConfigAsResolutionException("config('$key') is not a float", 0, $e);
         }
     }
 
@@ -84,7 +84,7 @@ class ConfigAs
         try {
             return TypeAs::int(Config::get($key, $default), $default, $resolver);
         } catch (UnexpectedValueException $e) {
-            throw new ConfigAsResolutionException("config($key) is not an int", 0, $e);
+            throw new ConfigAsResolutionException("config('$key') is not an int", 0, $e);
         }
     }
 
@@ -133,7 +133,7 @@ class ConfigAs
         try {
             return TypeAs::string(Config::get($key, $default), $default, $resolver);
         } catch (TypeAsResolutionException $e) {
-            throw new ConfigAsResolutionException("config($key) is not a string", 0, $e);
+            throw new ConfigAsResolutionException("config('$key') is not a string", 0, $e);
         }
     }
 }
