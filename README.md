@@ -74,20 +74,22 @@ If you would prefer to receive `null` instead of having an exception thrown, eac
 ```php
 use Smpita\ConfigAs\ConfigAs;
 
-ConfigAs::nullableString('config.key') === null
+ConfigAs::nullableString('config.key') === null; // true
 ```
 
 ---
 
 ## Cache
 
+[SIGNATURES#forgetting](docs/signatures.md#forgetting)
+
 To keep things performant, the validity of keys are only checked once and the result is cached in static arrays for the lifetime of the request.
-To sidestep the cache, you may use the `fresh` methods that are available for each type.
+To guarantee a fresh value, you may use the `fresh` methods that are available for each type.
 
 ```php
 use Smpita\ConfigAs\ConfigAs;
 
-$typed = ConfigAs::freshString('config.key')
+$typed = ConfigAs::freshString('config.key');
 ```
 
 #### Forgetting
