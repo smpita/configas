@@ -93,6 +93,21 @@ $typed = Smpita\ConfigAs::string('config.key', null, new CustomStringResolver);
 
 ---
 
+## Helpers
+
+[SIGNATURES#helpers](docs/signatures.md#helpers)
+
+Resolver methods have an associated helper method located in the `Smpita\ConfigAs` namespace.
+The helper method names follow the `ConfigAs` method names, but are prepended by `config` and are **camelCased**.
+
+```php
+use Smpita\ConfigAs\configString;
+
+$typed = configString('config.key');
+```
+
+---
+
 ## Deprecations
 
 [SIGNATURES#deprecations](docs/signatures.md#deprecations)
