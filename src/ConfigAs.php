@@ -187,8 +187,8 @@ class ConfigAs
     public static function nullableString(string $key, ?string $default = null, ?NullableStringResolver $resolver = null): ?string
     {
         return array_key_exists($key, self::$nullableStrings)
-        ? self::$nullableStrings[$key]
-        : self::$nullableStrings[$key] = TypeAs::nullableString(Config::get($key, $default), $default, $resolver);
+            ? self::$nullableStrings[$key]
+            : self::$nullableStrings[$key] = TypeAs::nullableString(Config::get($key, $default), $default, $resolver);
     }
 
     /**
