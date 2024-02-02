@@ -1,6 +1,7 @@
 <?php
 
 use Smpita\ConfigAs\ConfigAs;
+use Smpita\ConfigAs\Exceptions\ConfigAsResolutionException;
 use Smpita\ConfigAs\Tests\Stubs\ClassStub;
 
 it('can handle arrays', function () {
@@ -52,6 +53,26 @@ it('can handle strings', function () {
     $value = staticStringTest(ConfigAs::string('testing.float'));
     expect($value)->toBeString();
 });
+
+it('throws exception when not array', function () {
+    ConfigAs::array('testing.nullable');
+})->throws(ConfigAsResolutionException::class);
+
+it('throws exception when not class', function () {
+    ConfigAs::class(ClassStub::class, 'testing.nullable');
+})->throws(ConfigAsResolutionException::class);
+
+it('throws exception when not float', function () {
+    ConfigAs::float('testing.nullable');
+})->throws(ConfigAsResolutionException::class);
+
+it('throws exception when not int', function () {
+    ConfigAs::int('testing.nullable');
+})->throws(ConfigAsResolutionException::class);
+
+it('throws exception when not string', function () {
+    ConfigAs::string('testing.nullable');
+})->throws(ConfigAsResolutionException::class);
 
 function staticArrayTest(array $value): array
 {
