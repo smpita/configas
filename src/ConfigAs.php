@@ -20,7 +20,7 @@ use Smpita\TypeAs\TypeAs;
 class ConfigAs
 {
     /**
-     * @throws TypeAsResolutionException
+     * @throws ConfigAsResolutionException
      */
     public static function array(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
     {
@@ -38,7 +38,7 @@ class ConfigAs
      * @param  TClass  $default
      * @return TClass
      *
-     * @throws TypeAsResolutionException
+     * @throws ConfigAsResolutionException
      */
     public static function class(string $class, string $key, ?object $default = null, ?ClassResolver $resolver = null)
     {
@@ -50,7 +50,7 @@ class ConfigAs
     }
 
     /**
-     * @throws TypeAsResolutionException
+     * @throws ConfigAsResolutionException
      */
     public static function float(string $key, ?float $default = null, ?FloatResolver $resolver = null): float
     {
@@ -62,7 +62,7 @@ class ConfigAs
     }
 
     /**
-     * @throws TypeAsResolutionException
+     * @throws ConfigAsResolutionException
      */
     public static function int(string $key, ?int $default = null, ?IntResolver $resolver = null): int
     {
@@ -106,7 +106,7 @@ class ConfigAs
     }
 
     /**
-     * @throws TypeAsResolutionException
+     * @throws ConfigAsResolutionException
      */
     public static function string(string $key, ?string $default = null, ?StringResolver $resolver = null): string
     {
