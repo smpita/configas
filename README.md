@@ -79,6 +79,45 @@ ConfigAs::nullableString('config.key') === null
 
 ---
 
+## Cache
+
+To keep things performant, the validity of keys are only checked once and the result is cached in static arrays for the lifetime of the request.
+To sidestep the cache, you may use the `fresh` methods that are available for each type.
+
+```php
+use Smpita\ConfigAs\ConfigAs;
+
+$typed = ConfigAs::freshString('config.key')
+```
+
+#### Forgetting
+
+For each type, you can forget any given cached value.
+
+```php
+use Smpita\ConfigAs\ConfigAs;
+
+ConfigAs::forgetFloat('config.key');
+```
+
+You can forget all keys of a type.
+
+```php
+use Smpita\ConfigAs\ConfigAs;
+
+ConfigAs::forgetFloats();
+```
+
+You can forget all keys,
+
+```php
+use Smpita\ConfigAs\ConfigAs;
+
+ConfigAs::forgetAll();
+```
+
+---
+
 ## Resolvers
 
 [SIGNATURES#resolver-registration](https://github.com/smpita/typeas/blob/main/docs/signatures.md#resolver-registration)
