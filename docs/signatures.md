@@ -162,7 +162,7 @@ Smpita\ConfigAs::freshNullableString(mixed $value, ?string $default = null, ?Nul
 
 ### Forgetting
 
-#### A key
+#### Forget a key
 
 ```php
 \Smpita\ConfigAs::forgetArray(string $key): void
@@ -212,7 +212,7 @@ Smpita\ConfigAs::freshNullableString(mixed $value, ?string $default = null, ?Nul
 \Smpita\ConfigAs::forgetNullableString(string $key): void
 ```
 
-#### A type
+#### Forget a type
 
 ```php
 \Smpita\ConfigAs::forgetArrays(): void
@@ -262,7 +262,7 @@ Smpita\ConfigAs::freshNullableString(mixed $value, ?string $default = null, ?Nul
 \Smpita\ConfigAs::forgetNullableStrings(): void
 ```
 
-#### All
+#### Forget all
 
 ```php
 \Smpita\ConfigAs::forgetAll(): void
