@@ -21,9 +21,9 @@ class ConfigAs
     /**
      * @throws TypeAsResolutionException
      */
-    public static function array(string $key, bool|array $wrap = false, ?ArrayResolver $resolver = null): array
+    public static function array(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
     {
-        return TypeAs::array(Config::get($key), $wrap, $resolver);
+        return TypeAs::array(Config::get($key, $default), false, $resolver);
     }
 
     /**
@@ -56,9 +56,9 @@ class ConfigAs
         return TypeAs::int(Config::get($key, $default), $default, $resolver);
     }
 
-    public static function nullableArray(string $key, bool|array $wrap = false, ?NullableArrayResolver $resolver = null): ?array
+    public static function nullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null): ?array
     {
-        return TypeAs::nullableArray(Config::get($key), $wrap, $resolver);
+        return TypeAs::nullableArray(Config::get($key, $default), false, $resolver);
     }
 
     /**
