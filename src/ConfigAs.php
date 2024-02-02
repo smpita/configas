@@ -293,4 +293,140 @@ class ConfigAs
     {
         return TypeAs::nullableString(Config::get($key, $default), $default, $resolver);
     }
+
+    public static function forgetArray(string $key): void
+    {
+        unset(self::$arrays[$key]);
+    }
+
+    public static function forgetBool(string $key): void
+    {
+        unset(self::$bools[$key]);
+    }
+
+    public static function forgetClass(string $key): void
+    {
+        unset(self::$classes[$key]);
+    }
+
+    public static function forgetFloat(string $key): void
+    {
+        unset(self::$floats[$key]);
+    }
+
+    public static function forgetInt(string $key): void
+    {
+        unset(self::$ints[$key]);
+    }
+
+    public static function forgetString(string $key): void
+    {
+        unset(self::$nullableStrings[$key]);
+    }
+
+    public static function forgetNullableArray(string $key): void
+    {
+        unset(self::$nullableArrays[$key]);
+    }
+
+    public static function forgetNullableBool(string $key): void
+    {
+        unset(self::$nullableBools[$key]);
+    }
+
+    public static function forgetNullableClass(string $key): void
+    {
+        unset(self::$nullableClasses[$key]);
+    }
+
+    public static function forgetNullableFloat(string $key): void
+    {
+        unset(self::$nullableFloats[$key]);
+    }
+
+    public static function forgetNullableInt(string $key): void
+    {
+        unset(self::$nullableInts[$key]);
+    }
+
+    public static function forgetNullableString(string $key): void
+    {
+        unset(self::$nullableStrings[$key]);
+    }
+
+    public static function forgetArrays(): void
+    {
+        self::$arrays = [];
+    }
+
+    public static function forgetBools(): void
+    {
+        self::$bools = [];
+    }
+
+    public static function forgetClasses(): void
+    {
+        self::$classes = [];
+    }
+
+    public static function forgetFloats(): void
+    {
+        self::$floats = [];
+    }
+
+    public static function forgetInts(): void
+    {
+        self::$ints = [];
+    }
+
+    public static function forgetStrings(): void
+    {
+        self::$nullableStrings = [];
+    }
+
+    public static function forgetNullableArrays(): void
+    {
+        self::$nullableArrays = [];
+    }
+
+    public static function forgetNullableBools(): void
+    {
+        self::$nullableBools = [];
+    }
+
+    public static function forgetNullableClasses(): void
+    {
+        self::$nullableClasses = [];
+    }
+
+    public static function forgetNullableFloats(): void
+    {
+        self::$nullableFloats = [];
+    }
+
+    public static function forgetNullableInts(): void
+    {
+        self::$nullableInts = [];
+    }
+
+    public static function forgetNullableStrings(): void
+    {
+        self::$nullableStrings = [];
+    }
+
+    public static function forgetAll(): void
+    {
+        self::forgetArrays();
+        self::forgetBools();
+        self::forgetClasses();
+        self::forgetFloats();
+        self::forgetInts();
+        self::forgetStrings();
+        self::forgetNullableArrays();
+        self::forgetNullableBools();
+        self::forgetNullableClasses();
+        self::forgetNullableFloats();
+        self::forgetNullableInts();
+        self::forgetNullableStrings();
+    }
 }

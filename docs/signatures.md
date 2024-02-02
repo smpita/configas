@@ -12,6 +12,14 @@ Smpita\ConfigAs::array(string $key, ?array $default = null, ?ArrayResolver $reso
 Smpita\ConfigAs::nullableArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null): ?array
 ```
 
+```php
+Smpita\ConfigAs::freshArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
+```
+
+```php
+Smpita\ConfigAs::freshNullableArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null): ?array
+```
+
 #### Boolean
 
 ```php
@@ -20,6 +28,14 @@ Smpita\ConfigAs::bool(mixed $value, ?bool $default = null, ?BoolResolver $resolv
 
 ```php
 Smpita\ConfigAs::nullableBool(mixed $value, ?bool $default = null, ?NullableBoolResolver $resolver = null): ?bool
+```
+
+```php
+Smpita\ConfigAs::freshBool(mixed $value, ?bool $default = null, ?BoolResolver $resolver = null): bool
+```
+
+```php
+Smpita\ConfigAs::freshNullableBool(mixed $value, ?bool $default = null, ?NullableBoolResolver $resolver = null): ?bool
 ```
 
 #### Class
@@ -32,6 +48,14 @@ Smpita\ConfigAs::class(string $class, mixed $value, ?object $default = null, ?Cl
 Smpita\ConfigAs::nullableClass(string $class, mixed $value, ?object $default = null, ?NullableClassResolver $resolver = null): ?object
 ```
 
+```php
+Smpita\ConfigAs::freshClass(string $class, mixed $value, ?object $default = null, ?ClassResolver $resolver = null): object
+```
+
+```php
+Smpita\ConfigAs::freshNullableClass(string $class, mixed $value, ?object $default = null, ?NullableClassResolver $resolver = null): ?object
+```
+
 #### Float
 
 ```php
@@ -40,6 +64,14 @@ Smpita\ConfigAs::float(mixed $value, ?float $default = null, >FloatResolver $res
 
 ```php
 Smpita\ConfigAs::nullableFloat(mixed $value, ?float $default = null, ?NullableFloatResolver $resolver = null): ?float
+```
+
+```php
+Smpita\ConfigAs::freshFloat(mixed $value, ?float $default = null, >FloatResolver $resolver = null): float
+```
+
+```php
+Smpita\ConfigAs::freshNullableFloat(mixed $value, ?float $default = null, ?NullableFloatResolver $resolver = null): ?float
 ```
 
 #### Integer
@@ -52,6 +84,14 @@ Smpita\ConfigAs::int(mixed $value, ?int $default = null, ?IntResolver $resolver 
 Smpita\ConfigAs::nullableInt(mixed $value, ?int $default = null, ?NullableIntResolver $resolver = null): ?int
 ```
 
+```php
+Smpita\ConfigAs::freshInt(mixed $value, ?int $default = null, ?IntResolver $resolver = null): int
+```
+
+```php
+Smpita\ConfigAs::freshNullableInt(mixed $value, ?int $default = null, ?NullableIntResolver $resolver = null): ?int
+```
+
 #### String
 
 ```php
@@ -60,6 +100,14 @@ Smpita\ConfigAs::string(mixed $value, ?string $default = null, ?StringResolver $
 
 ```php
 Smpita\ConfigAs::nullableString(mixed $value, ?string $default = null, ?NullableStringResolver $resolver = null): ?string
+```
+
+```php
+Smpita\ConfigAs::freshString(mixed $value, ?string $default = null, ?StringResolver $resolver = null): string
+```
+
+```php
+Smpita\ConfigAs::freshNullableString(mixed $value, ?string $default = null, ?NullableStringResolver $resolver = null): ?string
 ```
 
 ### Helpers
@@ -110,6 +158,114 @@ Smpita\ConfigAs::nullableString(mixed $value, ?string $default = null, ?Nullable
 
 ```php
 \Smpita\ConfigAs\configString(string $key, string ?$default = null, ?StringResolver $resolver = null): string
+```
+
+### Forgetting
+
+#### A key
+
+```php
+\Smpita\ConfigAs::forgetArray(string $key): void
+```
+
+```php
+\Smpita\ConfigAs::forgetBool(string $key): void
+```
+
+```php
+\Smpita\ConfigAs::forgetClass(string $key): void
+```
+
+```php
+\Smpita\ConfigAs::forgetFloat(string $key): void
+```
+
+```php
+\Smpita\ConfigAs::forgetInt(string $key): void
+```
+
+```php
+\Smpita\ConfigAs::forgetString(string $key): void
+```
+
+```php
+\Smpita\ConfigAs::forgetNullableArray(string $key): void
+```
+
+```php
+\Smpita\ConfigAs::forgetNullableBool(string $key): void
+```
+
+```php
+\Smpita\ConfigAs::forgetNullableClass(string $key): void
+```
+
+```php
+\Smpita\ConfigAs::forgetNullableFloat(string $key): void
+```
+
+```php
+\Smpita\ConfigAs::forgetNullableInt(string $key): void
+```
+
+```php
+\Smpita\ConfigAs::forgetNullableString(string $key): void
+```
+
+#### A type
+
+```php
+\Smpita\ConfigAs::forgetArrays(): void
+```
+
+```php
+\Smpita\ConfigAs::forgetBools(): void
+```
+
+```php
+\Smpita\ConfigAs::forgetClasses(): void
+```
+
+```php
+\Smpita\ConfigAs::forgetFloats(): void
+```
+
+```php
+\Smpita\ConfigAs::forgetInts(): void
+```
+
+```php
+\Smpita\ConfigAs::forgetStrings(): void
+```
+
+```php
+\Smpita\ConfigAs::forgetNullableArrays(): void
+```
+
+```php
+\Smpita\ConfigAs::forgetNullableBools(): void
+```
+
+```php
+\Smpita\ConfigAs::forgetNullableClasses(): void
+```
+
+```php
+\Smpita\ConfigAs::forgetNullableFloats(): void
+```
+
+```php
+\Smpita\ConfigAs::forgetNullableInts(): void
+```
+
+```php
+\Smpita\ConfigAs::forgetNullableStrings(): void
+```
+
+#### All
+
+```php
+\Smpita\ConfigAs::forgetAll(): void
 ```
 
 ---
