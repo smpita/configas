@@ -104,7 +104,7 @@ use Smpita\ConfigAs\ConfigAs;
 ConfigAs::forgetFloat('config.key');
 ```
 
-You can forget all keys of a type.
+You can flush the cache of a type.
 
 ```php
 use Smpita\ConfigAs\ConfigAs;
