@@ -228,60 +228,60 @@ Smpita\ConfigAs::freshNullableString(mixed $value, ?string $default = null, ?Nul
 \Smpita\ConfigAs::forgetNullableString(string $key): void
 ```
 
-#### Forget a type
+#### Flush a type cache
 
 ```php
-\Smpita\ConfigAs::forgetArrays(): void
+\Smpita\ConfigAs::flushArrays(): void
 ```
 
 ```php
-\Smpita\ConfigAs::forgetBools(): void
+\Smpita\ConfigAs::flushBools(): void
 ```
 
 ```php
-\Smpita\ConfigAs::forgetClasses(): void
+\Smpita\ConfigAs::flushClasses(): void
 ```
 
 ```php
-\Smpita\ConfigAs::forgetFloats(): void
+\Smpita\ConfigAs::flushFloats(): void
 ```
 
 ```php
-\Smpita\ConfigAs::forgetInts(): void
+\Smpita\ConfigAs::flushInts(): void
 ```
 
 ```php
-\Smpita\ConfigAs::forgetStrings(): void
+\Smpita\ConfigAs::flushStrings(): void
 ```
 
 ```php
-\Smpita\ConfigAs::forgetNullableArrays(): void
+\Smpita\ConfigAs::flushNullableArrays(): void
 ```
 
 ```php
-\Smpita\ConfigAs::forgetNullableBools(): void
+\Smpita\ConfigAs::flushNullableBools(): void
 ```
 
 ```php
-\Smpita\ConfigAs::forgetNullableClasses(): void
+\Smpita\ConfigAs::flushNullableClasses(): void
 ```
 
 ```php
-\Smpita\ConfigAs::forgetNullableFloats(): void
+\Smpita\ConfigAs::flushNullableFloats(): void
 ```
 
 ```php
-\Smpita\ConfigAs::forgetNullableInts(): void
+\Smpita\ConfigAs::flushNullableInts(): void
 ```
 
 ```php
-\Smpita\ConfigAs::forgetNullableStrings(): void
+\Smpita\ConfigAs::flushNullableStrings(): void
 ```
 
-#### Forget all
+#### Flush all caches
 
 ```php
-\Smpita\ConfigAs::forgetAll(): void
+\Smpita\ConfigAs::flush(): void
 ```
 
 ---

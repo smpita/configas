@@ -379,79 +379,79 @@ class ConfigAs
         unset(self::$nullableStrings[$key]);
     }
 
-    public static function forgetArrays(): void
+    public static function flushArrays(): void
     {
         self::$arrays = [];
     }
 
-    public static function forgetBools(): void
+    public static function flushBools(): void
     {
         self::$bools = [];
     }
 
-    public static function forgetClasses(): void
+    public static function flushClasses(): void
     {
         self::$classes = [];
     }
 
-    public static function forgetFloats(): void
+    public static function flushFloats(): void
     {
         self::$floats = [];
     }
 
-    public static function forgetInts(): void
+    public static function flushInts(): void
     {
         self::$ints = [];
     }
 
-    public static function forgetStrings(): void
+    public static function flushStrings(): void
     {
         self::$nullableStrings = [];
     }
 
-    public static function forgetNullableArrays(): void
+    public static function flushNullableArrays(): void
     {
         self::$nullableArrays = [];
     }
 
-    public static function forgetNullableBools(): void
+    public static function flushNullableBools(): void
     {
         self::$nullableBools = [];
     }
 
-    public static function forgetNullableClasses(): void
+    public static function flushNullableClasses(): void
     {
         self::$nullableClasses = [];
     }
 
-    public static function forgetNullableFloats(): void
+    public static function flushNullableFloats(): void
     {
         self::$nullableFloats = [];
     }
 
-    public static function forgetNullableInts(): void
+    public static function flushNullableInts(): void
     {
         self::$nullableInts = [];
     }
 
-    public static function forgetNullableStrings(): void
+    public static function flushNullableStrings(): void
     {
         self::$nullableStrings = [];
     }
 
-    public static function forgetAll(): void
+    public static function flush(): void
     {
-        self::forgetArrays();
-        self::forgetBools();
-        self::forgetClasses();
-        self::forgetFloats();
-        self::forgetInts();
-        self::forgetStrings();
-        self::forgetNullableArrays();
-        self::forgetNullableBools();
-        self::forgetNullableClasses();
-        self::forgetNullableFloats();
-        self::forgetNullableInts();
-        self::forgetNullableStrings();
+        self::flushArrays();
+        self::flushBools();
+        self::flushClasses();
+        self::flushFloats();
+        self::flushInts();
+        self::flushStrings();
+        self::flushNullableArrays();
+        self::flushNullableBools();
+        self::flushNullableClasses();
+        self::flushNullableFloats();
+        self::flushNullableInts();
+        self::flushNullableStrings();
     }
 }
