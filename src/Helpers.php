@@ -16,6 +16,11 @@ use Smpita\TypeAs\Contracts\NullableIntResolver;
 use Smpita\TypeAs\Contracts\NullableStringResolver;
 use Smpita\TypeAs\Contracts\StringResolver;
 
+function configAs(): ConfigAs
+{
+    return new ConfigAs;
+}
+
 /**
  * @throws ConfigAsResolutionException
  */
@@ -62,7 +67,7 @@ function configInt(string $key, ?int $default = null, ?IntResolver $resolver = n
     return ConfigAs::int($key, $default, $resolver);
 }
 
-function configNullableArray(string $key, ?array $default, ?NullableArrayResolver $resolver = null): ?array
+function configNullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null): ?array
 {
     return ConfigAs::nullableArray($key, $default, $resolver);
 }

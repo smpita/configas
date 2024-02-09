@@ -64,6 +64,14 @@ Smpita\ConfigAs::nullableString(mixed $value, ?string $default = null, ?Nullable
 
 ### Helpers
 
+#### Generic
+
+```php
+\Smpita\ConfigAs\configAs(): \Smpita\ConfigAs\ConfigAs
+```
+
+#### Typed
+
 ```php
 \Smpita\ConfigAs\configArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
 ```
