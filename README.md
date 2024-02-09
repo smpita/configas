@@ -81,9 +81,9 @@ ConfigAs::nullableString('config.key') === null; // true
 
 ## Cache
 
-[SIGNATURES#forgetting](docs/signatures.md#forgetting)
+[SIGNATURES#cache](docs/signatures.md#cache)
 
-To keep things performant, the validity of keys are only checked once and the result is cached in static arrays for the lifetime of the request.
+To keep things performant, types are only validated once and results are cached in static arrays for the lifetime of the request.
 To guarantee a fresh value, you may use the `fresh` methods that are available for each type.
 
 ```php
@@ -112,7 +112,7 @@ use Smpita\ConfigAs\ConfigAs;
 ConfigAs::forgetFloats();
 ```
 
-You can forget all keys,
+You can forget all keys.
 
 ```php
 use Smpita\ConfigAs\ConfigAs;
