@@ -62,7 +62,7 @@ You can still provide a default.
 ```php
 use Smpita\ConfigAs\ConfigAs;
 
-$typed = ConfigAs::class(Target::class, 'config.key', new \StdClass);
+$typed = ConfigAs::class(Target::class, 'config.key', new Target('default'));
 ```
 
 ---
