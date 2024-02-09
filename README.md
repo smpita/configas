@@ -109,15 +109,15 @@ You can forget all keys of a type.
 ```php
 use Smpita\ConfigAs\ConfigAs;
 
-ConfigAs::forgetFloats();
+ConfigAs::flushFloats();
 ```
 
-You can forget all keys.
+You can flush all keys.
 
 ```php
 use Smpita\ConfigAs\ConfigAs;
 
-ConfigAs::forgetAll();
+ConfigAs::flush();
 ```
 
 ---
