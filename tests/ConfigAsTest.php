@@ -89,6 +89,11 @@ it('throws exception when not string', function () {
     ConfigAs::string('testing.nullable');
 })->throws(ConfigAsResolutionException::class);
 
+it('helper can handle arrays', function () {
+    $value = staticArrayTest(\Smpita\ConfigAs\configArray('testing.array'));
+    expect($value)->toBeArray();
+});
+
 function staticArrayTest(array $value): array
 {
     return $value;
