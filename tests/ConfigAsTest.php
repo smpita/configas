@@ -26,7 +26,7 @@ it('can handle floats', function () {
 });
 
 it('can handle ints', function () {
-    $value = staticIntTest(ConfigAs::int('testing.float'));
+    $value = staticIntTest(ConfigAs::int('testing.int'));
     expect($value)->toBeInt();
 });
 

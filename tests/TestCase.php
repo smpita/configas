@@ -4,6 +4,7 @@ namespace Smpita\ConfigAs\Tests;
 
 use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Smpita\ConfigAs\ConfigAs;
 use Smpita\ConfigAs\Tests\Stubs\ClassStub;
 
 class TestCase extends Orchestra
@@ -15,6 +16,7 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
+        ConfigAs::flush();
         Config::set('database.default', 'testing');
         Config::set('testing', [
             'array' => ['foo'],
