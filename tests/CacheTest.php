@@ -365,7 +365,7 @@ it('does not cache default classes', function () {
 });
 
 it('does not cache default floats', function () {
-    $cached = fake()->randomFloat();
+    $cached = fake()->randomFloat(2, 0.01, PHP_FLOAT_MAX);
     $value = ConfigAs::float('testing.float', $cached);
 
     expect($value)->toEqual(ConfigAs::freshFloat('testing.float'));
@@ -373,7 +373,7 @@ it('does not cache default floats', function () {
 });
 
 it('does not cache default ints', function () {
-    $cached = fake()->randomNumber();
+    $cached = fake()->numberBetween(1, PHP_INT_MAX);
     $value = ConfigAs::int('testing.int', $cached);
 
     expect($value)->toEqual(ConfigAs::freshInt('testing.int'));
@@ -413,7 +413,7 @@ it('does not cache default nullable classes', function () {
 });
 
 it('does not cache default nullable floats', function () {
-    $cached = ConfigAs::nullableFloat('testing.nullable', fake()->randomFloat());
+    $cached = ConfigAs::nullableFloat('testing.nullable', fake()->randomFloat(2, 0.01, PHP_FLOAT_MAX));
     $value = ConfigAs::nullableFloat('testing.nullable');
 
     expect($value)->toBeNull();
@@ -421,7 +421,7 @@ it('does not cache default nullable floats', function () {
 });
 
 it('does not cache default nullable ints', function () {
-    $cached = ConfigAs::nullableInt('testing.nullable', fake()->randomNumber());
+    $cached = ConfigAs::nullableInt('testing.nullable', fake()->numberBetween(1, PHP_INT_MAX));
     $value = ConfigAs::nullableInt('testing.nullable');
 
     expect($value)->toBeNull();
