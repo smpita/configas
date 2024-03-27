@@ -340,6 +340,102 @@ it('can read fresh strings', function () {
     expect($value)->not->toEqual($cached);
 });
 
+it('does not cache default arrays', function () {
+    $cached = [fake()->word()];
+    $value = ConfigAs::array('testing.array', $cached);
+
+    expect($value)->toEqual(ConfigAs::freshArray('testing.array'));
+    expect($value)->not->toEqual($cached);
+});
+
+it('does not cache default bools', function () {
+    $cached = false;
+    $value = ConfigAs::bool('testing.bool', $cached);
+
+    expect($value)->toEqual(ConfigAs::freshBool('testing.bool'));
+    expect($value)->not->toEqual($cached);
+});
+
+it('does not cache default classes', function () {
+    $cached = new CacheClassStub();
+    $value = ConfigAs::class(ClassStub::class, 'testing.class', $cached);
+
+    expect($value)->toEqual(ConfigAs::freshClass(ClassStub::class, 'testing.class'));
+    expect($value)->not->toEqual($cached);
+});
+
+it('does not cache default floats', function () {
+    $cached = fake()->randomFloat();
+    $value = ConfigAs::float('testing.float', $cached);
+
+    expect($value)->toEqual(ConfigAs::freshFloat('testing.float'));
+    expect($value)->not->toEqual($cached);
+});
+
+it('does not cache default ints', function () {
+    $cached = fake()->randomNumber();
+    $value = ConfigAs::int('testing.int', $cached);
+
+    expect($value)->toEqual(ConfigAs::freshInt('testing.int'));
+    expect($value)->not->toEqual($cached);
+});
+
+it('does not cache default strings', function () {
+    $cached = fake()->word();
+    $value = ConfigAs::string('testing.string', $cached);
+
+    expect($value)->toEqual(ConfigAs::freshString('testing.string'));
+    expect($value)->not->toEqual($cached);
+});
+
+it('does not cache default nullable arrays', function () {
+    $cached = ConfigAs::nullableArray('testing.nullable', [fake()->word()]);
+    $value = ConfigAs::nullableArray('testing.nullable');
+
+    expect($value)->toBeNull();
+    expect($value)->not->toEqual($cached);
+});
+
+it('does not cache default nullable bools', function () {
+    $cached = ConfigAs::nullableBool('testing.nullable', true);
+    $value = ConfigAs::nullableBool('testing.nullable');
+
+    expect($value)->toBeNull();
+    expect($value)->not->toEqual($cached);
+});
+
+it('does not cache default nullable classes', function () {
+    $cached = ConfigAs::nullableClass(CacheClassStub::class, 'testing.nullable', new CacheClassStub());
+    $value = ConfigAs::nullableClass(CacheClassStub::class, 'testing.nullable');
+
+    expect($value)->toBeNull();
+    expect($value)->not->toEqual($cached);
+});
+
+it('does not cache default nullable floats', function () {
+    $cached = ConfigAs::nullableFloat('testing.nullable', fake()->randomFloat());
+    $value = ConfigAs::nullableFloat('testing.nullable');
+
+    expect($value)->toBeNull();
+    expect($value)->not->toEqual($cached);
+});
+
+it('does not cache default nullable ints', function () {
+    $cached = ConfigAs::nullableInt('testing.nullable', fake()->randomNumber());
+    $value = ConfigAs::nullableInt('testing.nullable');
+
+    expect($value)->toBeNull();
+    expect($value)->not->toEqual($cached);
+});
+
+it('does not cache default nullable strings', function () {
+    $cached = ConfigAs::nullableString('testing.nullable', fake()->word());
+    $value = ConfigAs::nullableString('testing.nullable');
+
+    expect($value)->toBeNull();
+    expect($value)->not->toEqual($cached);
+});
+
 class CacheClassStub extends ClassStub
 {
 }
