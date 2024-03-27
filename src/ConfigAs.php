@@ -81,7 +81,17 @@ class ConfigAs
      */
     public static function array(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
     {
-        return self::$arrays[$key] ??= self::freshArray($key, $default, $resolver);
+        if (isset(self::$arrays[$key])) {
+            return self::$arrays[$key];
+        }
+
+        try {
+            return self::$arrays[$key] = self::freshArray($key, null, $resolver);
+        } catch (ConfigAsResolutionException $e) {
+            return is_null($default)
+                ? throw $e
+                : $default;
+        }
     }
 
     /**
@@ -89,7 +99,17 @@ class ConfigAs
      */
     public static function bool(string $key, ?bool $default = null, ?BoolResolver $resolver = null): bool
     {
-        return self::$bools[$key] ??= self::freshBool($key, $default, $resolver);
+        if (isset(self::$bools[$key])) {
+            return self::$bools[$key];
+        }
+
+        try {
+            return self::$bools[$key] = self::freshbool($key, null, $resolver);
+        } catch (ConfigAsResolutionException $e) {
+            return is_null($default)
+                ? throw $e
+                : $default;
+        }
     }
 
     /**
@@ -103,7 +123,17 @@ class ConfigAs
      */
     public static function class(string $expected, string $key, ?object $default = null, ?ClassResolver $resolver = null)
     {
-        return self::$classes[$key] ??= self::freshClass($expected, $key, $default, $resolver);
+        if (isset(self::$classes[$key])) {
+            return self::$classes[$key];
+        }
+
+        try {
+            return self::$classes[$key] = self::freshClass($expected, $key, null, $resolver);
+        } catch (ConfigAsResolutionException $e) {
+            return is_null($default)
+                ? throw $e
+                : $default;
+        }
     }
 
     /**
@@ -111,7 +141,17 @@ class ConfigAs
      */
     public static function float(string $key, ?float $default = null, ?FloatResolver $resolver = null): float
     {
-        return self::$floats[$key] ??= self::freshFloat($key, $default, $resolver);
+        if (isset(self::$floats[$key])) {
+            return self::$floats[$key];
+        }
+
+        try {
+            return self::$floats[$key] = self::freshFloat($key, null, $resolver);
+        } catch (ConfigAsResolutionException $e) {
+            return is_null($default)
+                ? throw $e
+                : $default;
+        }
     }
 
     /**
@@ -119,7 +159,17 @@ class ConfigAs
      */
     public static function int(string $key, ?int $default = null, ?IntResolver $resolver = null): int
     {
-        return self::$ints[$key] ??= self::freshInt($key, $default, $resolver);
+        if (isset(self::$ints[$key])) {
+            return self::$ints[$key];
+        }
+
+        try {
+            return self::$ints[$key] = self::freshInt($key, null, $resolver);
+        } catch (ConfigAsResolutionException $e) {
+            return is_null($default)
+                ? throw $e
+                : $default;
+        }
     }
 
     /**
@@ -127,21 +177,39 @@ class ConfigAs
      */
     public static function string(string $key, ?string $default = null, ?StringResolver $resolver = null): string
     {
-        return self::$nullableStrings[$key] ??= self::freshString($key, $default, $resolver);
+        if (isset(self::$strings[$key])) {
+            return self::$strings[$key];
+        }
+
+        try {
+            return self::$strings[$key] = self::freshString($key, null, $resolver);
+        } catch (ConfigAsResolutionException $e) {
+            return is_null($default)
+                ? throw $e
+                : $default;
+        }
     }
 
     public static function nullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null): ?array
     {
-        return array_key_exists($key, self::$nullableArrays)
-            ? self::$nullableArrays[$key]
-            : self::$nullableArrays[$key] = self::freshNullableArray($key, $default, $resolver);
+        if (isset(self::$nullableArrays[$key])) {
+            return self::$nullableArrays[$key] ?? $default;
+        }
+
+        self::$nullableArrays[$key] = self::freshNullableArray($key, null, $resolver);
+
+        return self::$nullableArrays[$key] ?? $default;
     }
 
     public static function nullableBool(string $key, ?bool $default = null, ?NullableBoolResolver $resolver = null): ?bool
     {
-        return array_key_exists($key, self::$nullableBools)
-            ? self::$nullableBools[$key]
-            : self::$nullableBools[$key] = self::freshNullableBool($key, $default, $resolver);
+        if (isset(self::$nullableBools[$key])) {
+            return self::$nullableBools[$key] ?? $default;
+        }
+
+        self::$nullableBools[$key] = self::freshNullableBool($key, null, $resolver);
+
+        return self::$nullableBools[$key] ?? $default;
     }
 
     /**
@@ -153,30 +221,46 @@ class ConfigAs
      */
     public static function nullableClass(string $expected, string $key, ?object $default = null, ?NullableClassResolver $resolver = null)
     {
-        return array_key_exists($key, self::$nullableClasses)
-            ? self::$nullableClasses[$key]
-            : self::$nullableClasses[$key] = self::freshNullableClass($expected, $key, $default, $resolver);
+        if (isset(self::$nullableClasses[$key])) {
+            return self::$nullableClasses[$key] ?? $default;
+        }
+
+        self::$nullableClasses[$key] = self::freshNullableClass($expected, $key, null, $resolver);
+
+        return self::$nullableClasses[$key] ?? $default;
     }
 
     public static function nullableFloat(string $key, ?float $default = null, ?NullableFloatResolver $resolver = null): ?float
     {
-        return array_key_exists($key, self::$nullableFloats)
-            ? self::$nullableFloats[$key]
-            : self::$nullableFloats[$key] = self::freshNullableFloat($key, $default, $resolver);
+        if (isset(self::$nullableFloats[$key])) {
+            return self::$nullableFloats[$key] ?? $default;
+        }
+
+        self::$nullableFloats[$key] = self::freshNullableFloat($key, null, $resolver);
+
+        return self::$nullableFloats[$key] ?? $default;
     }
 
     public static function nullableInt(string $key, ?int $default = null, ?NullableIntResolver $resolver = null): ?int
     {
-        return array_key_exists($key, self::$nullableInts)
-            ? self::$nullableInts[$key]
-            : self::$nullableInts[$key] = self::freshNullableInt($key, $default, $resolver);
+        if (isset(self::$nullableInts[$key])) {
+            return self::$nullableInts[$key] ?? $default;
+        }
+
+        self::$nullableInts[$key] = self::freshNullableInt($key, null, $resolver);
+
+        return self::$nullableInts[$key] ?? $default;
     }
 
     public static function nullableString(string $key, ?string $default = null, ?NullableStringResolver $resolver = null): ?string
     {
-        return array_key_exists($key, self::$nullableStrings)
-            ? self::$nullableStrings[$key]
-            : self::$nullableStrings[$key] = self::freshNullableString($key, $default, $resolver);
+        if (isset(self::$nullableStrings[$key])) {
+            return self::$nullableStrings[$key] ?? $default;
+        }
+
+        self::$nullableStrings[$key] = self::freshNullableString($key, null, $resolver);
+
+        return self::$nullableStrings[$key] ?? $default;
     }
 
     /**
@@ -185,9 +269,7 @@ class ConfigAs
     public static function freshArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
     {
         try {
-            self::forgetArray($key);
-
-            return self::$arrays[$key] = TypeAs::array(Config::get($key, $default), false, $resolver);
+            return TypeAs::array(Config::get($key, $default), false, $resolver);
         } catch (UnexpectedValueException $e) {
             throw new ConfigAsResolutionException("config('$key') is not an array", 0, $e);
         }
@@ -199,9 +281,7 @@ class ConfigAs
     public static function freshBool(string $key, ?bool $default = null, ?BoolResolver $resolver = null): bool
     {
         try {
-            self::forgetBool($key);
-
-            return self::$bools[$key] = TypeAs::bool(Config::get($key, $default), false, $resolver);
+            return TypeAs::bool(Config::get($key, $default), false, $resolver);
         } catch (UnexpectedValueException $e) {
             throw new ConfigAsResolutionException("config('$key') is not a boolean", 0, $e);
         }
@@ -219,9 +299,7 @@ class ConfigAs
     public static function freshClass(string $expected, string $key, ?object $default = null, ?ClassResolver $resolver = null)
     {
         try {
-            self::forgetClass($key);
-
-            return self::$classes[$key] = TypeAs::class($expected, Config::get($key), $default, $resolver);
+            return TypeAs::class($expected, Config::get($key), $default, $resolver);
         } catch (UnexpectedValueException $e) {
             throw new ConfigAsResolutionException("config('$key') is not the class $expected", 0, $e);
         }
@@ -233,9 +311,7 @@ class ConfigAs
     public static function freshFloat(string $key, ?float $default = null, ?FloatResolver $resolver = null): float
     {
         try {
-            self::forgetFloat($key);
-
-            return self::$floats[$key] = TypeAs::float(Config::get($key, $default), $default, $resolver);
+            return TypeAs::float(Config::get($key, $default), $default, $resolver);
         } catch (UnexpectedValueException $e) {
             throw new ConfigAsResolutionException("config('$key') is not a float", 0, $e);
         }
@@ -247,9 +323,7 @@ class ConfigAs
     public static function freshInt(string $key, ?int $default = null, ?IntResolver $resolver = null): int
     {
         try {
-            self::forgetInt($key);
-
-            return self::$ints[$key] = TypeAs::int(Config::get($key, $default), $default, $resolver);
+            return TypeAs::int(Config::get($key, $default), $default, $resolver);
         } catch (UnexpectedValueException $e) {
             throw new ConfigAsResolutionException("config('$key') is not an int", 0, $e);
         }
@@ -261,9 +335,7 @@ class ConfigAs
     public static function freshString(string $key, ?string $default = null, ?StringResolver $resolver = null): string
     {
         try {
-            self::forgetString($key);
-
-            return self::$strings[$key] = TypeAs::string(Config::get($key, $default), $default, $resolver);
+            return TypeAs::string(Config::get($key, $default), $default, $resolver);
         } catch (TypeAsResolutionException $e) {
             throw new ConfigAsResolutionException("config('$key') is not a string", 0, $e);
         }
@@ -271,16 +343,12 @@ class ConfigAs
 
     public static function freshNullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null): ?array
     {
-        self::forgetNullableArray($key);
-
-        return self::$nullableArrays[$key] = TypeAs::nullableArray(Config::get($key, $default), false, $resolver);
+        return TypeAs::nullableArray(Config::get($key, $default), false, $resolver);
     }
 
     public static function freshNullableBool(string $key, ?bool $default = null, ?NullableBoolResolver $resolver = null): ?bool
     {
-        self::forgetNullableBool($key);
-
-        return self::$nullableBools[$key] = TypeAs::nullableBool(Config::get($key, $default), $default, $resolver);
+        return TypeAs::nullableBool(Config::get($key, $default), $default, $resolver);
     }
 
     /**
@@ -292,31 +360,22 @@ class ConfigAs
      */
     public static function freshNullableClass(string $class, string $key, ?object $default = null, ?NullableClassResolver $resolver = null)
     {
-        self::forgetNullableClass($key);
-
-        return self::$nullableClasses[$key] = TypeAs::nullableClass($class, Config::get($key), $default, $resolver);
+        return TypeAs::nullableClass($class, Config::get($key), $default, $resolver);
     }
 
     public static function freshNullableFloat(string $key, ?float $default = null, ?NullableFloatResolver $resolver = null): ?float
     {
-        self::forgetNullableFloat($key);
-
-        return self::$nullableFloats[$key] = TypeAs::nullableFloat(Config::get($key, $default), $default, $resolver);
+        return TypeAs::nullableFloat(Config::get($key, $default), $default, $resolver);
     }
 
     public static function freshNullableInt(string $key, ?int $default = null, ?NullableIntResolver $resolver = null): ?int
     {
-        self::forgetNullableInt($key);
-
-        return self::$nullableInts[$key] = TypeAs::nullableInt(Config::get($key, $default), $default, $resolver);
+        return TypeAs::nullableInt(Config::get($key, $default), $default, $resolver);
     }
 
     public static function freshNullableString(string $key, ?string $default = null, ?NullableStringResolver $resolver = null): ?string
     {
-
-        self::forgetNullableString($key);
-
-        return self::$nullableStrings[$key] = TypeAs::nullableString(Config::get($key, $default), $default, $resolver);
+        return TypeAs::nullableString(Config::get($key, $default), $default, $resolver);
     }
 
     public static function forgetArray(string $key): void
