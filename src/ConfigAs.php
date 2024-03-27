@@ -465,7 +465,7 @@ class ConfigAs
 
     public static function flushStrings(): void
     {
-        self::$nullableStrings = [];
+        self::$strings = [];
     }
 
     public static function flushNullableArrays(): void
