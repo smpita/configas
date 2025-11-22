@@ -18,7 +18,7 @@ use Smpita\TypeAs\Contracts\StringResolver;
 
 function configAs(): ConfigAs
 {
-    return new ConfigAs;
+    return new ConfigAs();
 }
 
 /**

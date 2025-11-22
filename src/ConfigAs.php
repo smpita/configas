@@ -124,6 +124,7 @@ class ConfigAs
     public static function class(string $expected, string $key, ?object $default = null, ?ClassResolver $resolver = null)
     {
         if (isset(self::$classes[$key])) {
+            /** @var TClass */
             return self::$classes[$key];
         }
 
@@ -222,6 +223,7 @@ class ConfigAs
     public static function nullableClass(string $expected, string $key, ?object $default = null, ?NullableClassResolver $resolver = null)
     {
         if (isset(self::$nullableClasses[$key])) {
+            /** @var TClass */
             return self::$nullableClasses[$key] ?? $default;
         }
 
