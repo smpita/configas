@@ -1,9 +1,11 @@
 # Typed Config Resolver for Laravel
 
+[![Total Downloads](https://img.shields.io/packagist/dt/smpita/configas.svg?style=flat-square)](https://packagist.org/packages/smpita/configas)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/smpita/configas.svg?style=flat-square)](https://packagist.org/packages/smpita/configas)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/smpita/configas/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/smpita/configas/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/smpita/configas/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/smpita/configas/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/smpita/configas.svg?style=flat-square)](https://packagist.org/packages/smpita/configas)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsmpita%2Fconfigas.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsmpita%2Fconfigas?ref=badge_shield&issueType=license)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsmpita%2Fconfigas.svg?type=shield&issueType=security)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsmpita%2Fconfigas?ref=badge_shield&issueType=security)
 
 Do you use [Laravel](https://laravel.com) and fight the **mixed** signatures of `config()` when performing static analysis?
 
