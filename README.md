@@ -23,6 +23,7 @@ Don't settle for **mixed** signatures from `config()` when you can enforce types
   - [Resolving Types](#resolving-types)
   - [Cache](#cache)
   - [Cache Invalidation](#cache-invalidation)
+  - [Fresh Values](#fresh-values)
   - [Helpers](#helpers)
 - [Deprecations](#deprecations)
 - [Testing](#testing)
@@ -54,7 +55,6 @@ See [SIGNATURES](docs/signatures.md) for the full list of methods and signatures
 
 ```php
 use Smpita\ConfigAs\ConfigAs;
-
 
 // Throws \Smpita\ConfigAs\ConfigAsResolutionException if 'config.key' can't resolve to the type.
 $array = ConfigAs::array('config.key');
@@ -101,27 +101,9 @@ $nullableString = ConfigAs::nullableString('config.key', '');
 
 [SIGNATURES#cache](docs/signatures.md#cache)
 
-To keep things performant, types are only validated once and results are cached in static arrays for the lifetime of the request.
-To guarantee a fresh value, you may use the `fresh` methods that are available for each type.
+To keep things performant, types are validated once and results are cached in static arrays for the lifetime of the request.
 
-```php
-use Smpita\ConfigAs\ConfigAs;
-
-$array = ConfigAs::freshArray('config.key');
-$bool = ConfigAs::freshBool('config.key');
-$class = ConfigAs::freshClass(Expected::class, 'config.key');
-$float = ConfigAs::freshFloat('config.key');
-$int = ConfigAs::freshInt('config.key');
-$string = ConfigAs::freshString('config.key');
-$nullableArray = ConfigAs::freshNullableArray('config.key');
-$nullableBool = ConfigAs::freshNullableBool('config.key');
-$nullableClass = ConfigAs::freshNullableClass(Expected::class, 'config.key');
-$nullableFloat = ConfigAs::freshNullableFloat('config.key');
-$nullableInt = ConfigAs::freshNullableInt('config.key');
-$nullableString = ConfigAs::freshNullableString('config.key');
-```
-
-#### Cache Invalidation
+### Cache Invalidation
 
 [SIGNATURES#cache-invalidation](docs/signatures.md#cache-invalidation)
 
@@ -155,44 +137,97 @@ ConfigAs::forgetNullableInt('config.key');
 ConfigAs::forgetNullableString('config.key');
 ```
 
----
+### Fresh values
 
-## Resolvers
-
-[SIGNATURES#resolver-registration](https://github.com/smpita/typeas/blob/main/docs/signatures.md#resolver-registration)
-
-You can leverage the included [Smpita\TypeAs](https://github.com/smpita/typeas/) library to create your own custom resolvers. For creation, global registration, and full instructions, see the [library docs](https://github.com/smpita/typeas/blob/main/README.md#resolvers).
-
-#### Single use
+To bypass the cache, you may use the `fresh` methods that are available for each type.
+This method bypasses the cache entirely. Returns from these methods will not be cached.
+To update a cache, [invalidate](#cache-invalidation) the `config.key`, then use a [standard resolver](#resolving-types).
 
 ```php
-$typed = Smpita\ConfigAs::string('config.key', null, new CustomStringResolver);
-```
+use Smpita\ConfigAs\ConfigAs;
 
+$array = ConfigAs::freshArray('config.key');
+$bool = ConfigAs::freshBool('config.key');
+$class = ConfigAs::freshClass(Expected::class, 'config.key');
+$float = ConfigAs::freshFloat('config.key');
+$int = ConfigAs::freshInt('config.key');
+$string = ConfigAs::freshString('config.key');
+$nullableArray = ConfigAs::freshNullableArray('config.key');
+$nullableBool = ConfigAs::freshNullableBool('config.key');
+$nullableClass = ConfigAs::freshNullableClass(Expected::class, 'config.key');
+$nullableFloat = ConfigAs::freshNullableFloat('config.key');
+$nullableInt = ConfigAs::freshNullableInt('config.key');
+$nullableString = ConfigAs::freshNullableString('config.key');
+```
 ---
 
 ## Helpers
 
 [SIGNATURES#helpers](docs/signatures.md#helpers)
 
-There is a `configAs()` helper method located in the `Smpita\ConfigAs` namespace.
+There are helper methods located in the `Smpita\ConfigAs` namespace.
+
+```php
+use function Smpita\ConfigAs\configArray;
+use function Smpita\ConfigAs\configBool;
+use function Smpita\ConfigAs\configClass;
+use function Smpita\ConfigAs\configFloat;
+use function Smpita\ConfigAs\configInt;
+use function Smpita\ConfigAs\configString;
+use function Smpita\ConfigAs\configNullableArray;
+use function Smpita\ConfigAs\configNullableBool;
+use function Smpita\ConfigAs\configNullableClass;
+use function Smpita\ConfigAs\configNullableFloat;
+use function Smpita\ConfigAs\configNullableInt;
+use function Smpita\ConfigAs\configNullableString;
+
+$array = configArray('config.key');
+$bool = configBool('config.key');
+$class = configClass(Expected::class, 'config.key');
+$float = configFloat('config.key');
+$int = configInt('config.key');
+$string = configString('config.key');
+$nullableArray = configNullableArray('config.key');
+$nullableBool = configNullableBool('config.key');
+$nullableClass = configNullableClass(Expected::class, 'config.key');
+$nullableFloat = configNullableFloat('config.key');
+$nullableInt = configNullableInt('config.key');
+$nullableString = configNullableString('config.key');
+```
+
+Additionally:
 
 ```php
 use function Smpita\ConfigAs\configAs;
 
 $configAs = configAs();
 
-$string = $configAs->string('config.string.key');
-$array = $configAs->array('config.array.key');
+$array = $configAs->array('config.key');
+$bool = $configAs->bool('config.key');
+$class = $configAs->class(Expected::class, 'config.key');
+$float = $configAs->float('config.key');
+$int = $configAs->int('config.key');
+$string = $configAs->string('config.key');
+$nullableArray = $configAs->nullableArray('config.key');
+$nullableBool = $configAs->nullableBool('config.key');
+$nullableClass = $configAs->nullableClass(Expected::class, 'config.key');
+$nullableFloat = $configAs->nullableFloat('config.key');
+$nullableInt = $configAs->nullableInt('config.key');
+$nullableString = $configAs->nullableString('config.key');
 ```
 
-Resolver methods have an associated helper method located in the `Smpita\ConfigAs` namespace.
-The helper method names follow the `ConfigAs` method names, but are prepended by `config` and are **camelCased**.
+---
+
+## Custom Resolvers
+
+[SIGNATURES#resolver-registration](https://github.com/smpita/typeas/blob/main/docs/signatures.md#resolver-registration)
+
+ConfigAs methods will pass custom resolves to the underlying [Smpita\TypeAs](https://github.com/smpita/typeas/) library to enable you to use your own custom resolvers. For creation, global registration, and full instructions, see the [library docs](https://github.com/smpita/typeas/blob/main/README.md#resolvers).
+
+#### Single use
 
 ```php
-use function Smpita\ConfigAs\configString;
-
-$typed = configString('config.key');
+$string = \Smpita\ConfigAs::string('config.key', null, new CustomStringResolver());
 ```
 
 ---
