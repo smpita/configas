@@ -184,7 +184,7 @@ Smpita\ConfigAs::freshString(mixed $value, ?string $default = null, ?StringResol
 Smpita\ConfigAs::freshNullableString(mixed $value, ?string $default = null, ?NullableStringResolver $resolver = null): ?string
 ```
 
-### Forgetting
+### Cache Invalidation
 
 #### Forget a key
 
