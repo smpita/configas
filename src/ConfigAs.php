@@ -88,9 +88,11 @@ class ConfigAs
         try {
             return self::$arrays[$key] = self::freshArray($key, null, $resolver);
         } catch (ConfigAsResolutionException $e) {
-            return is_null($default)
-                ? throw $e
-                : $default;
+            if (is_null($default)) {
+                throw $e;
+            }
+
+            return $default;
         }
     }
 
@@ -106,9 +108,11 @@ class ConfigAs
         try {
             return self::$bools[$key] = self::freshBool($key, null, $resolver);
         } catch (ConfigAsResolutionException $e) {
-            return is_null($default)
-                ? throw $e
-                : $default;
+            if (is_null($default)) {
+                throw $e;
+            }
+
+            return $default;
         }
     }
 
@@ -131,9 +135,11 @@ class ConfigAs
         try {
             return self::$classes[$key] = self::freshClass($expected, $key, null, $resolver);
         } catch (ConfigAsResolutionException $e) {
-            return is_null($default)
-                ? throw $e
-                : $default;
+            if (is_null($default)) {
+                throw $e;
+            }
+
+            return $default;
         }
     }
 
@@ -149,9 +155,11 @@ class ConfigAs
         try {
             return self::$floats[$key] = self::freshFloat($key, null, $resolver);
         } catch (ConfigAsResolutionException $e) {
-            return is_null($default)
-                ? throw $e
-                : $default;
+            if (is_null($default)) {
+                throw $e;
+            }
+
+            return $default;
         }
     }
 
@@ -167,9 +175,11 @@ class ConfigAs
         try {
             return self::$ints[$key] = self::freshInt($key, null, $resolver);
         } catch (ConfigAsResolutionException $e) {
-            return is_null($default)
-                ? throw $e
-                : $default;
+            if (is_null($default)) {
+                throw $e;
+            }
+
+            return $default;
         }
     }
 
@@ -185,9 +195,11 @@ class ConfigAs
         try {
             return self::$strings[$key] = self::freshString($key, null, $resolver);
         } catch (ConfigAsResolutionException $e) {
-            return is_null($default)
-                ? throw $e
-                : $default;
+            if (is_null($default)) {
+                throw $e;
+            }
+
+            return $default;
         }
     }
 
