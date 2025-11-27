@@ -79,7 +79,7 @@ it('can handle bool default', function () {
 
     expect(ConfigAs::bool($key, $default))->toBe($default);
     expect(ConfigAs::bool($key)); // throws exception without default, does not cache default
-})->throws(ConfigAsResolutionException::class)->group('testing');
+})->throws(ConfigAsResolutionException::class);
 
 it('can handle class default', function () {
     $key = 'testing.default.class';
