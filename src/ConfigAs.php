@@ -407,7 +407,7 @@ class ConfigAs
 
     public static function forgetString(string $key): void
     {
-        unset(self::$nullableStrings[$key]);
+        unset(self::$strings[$key]);
     }
 
     public static function forgetNullableArray(string $key): void
