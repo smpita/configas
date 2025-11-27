@@ -272,7 +272,7 @@ class ConfigAs
     {
         try {
             return TypeAs::array(Config::get($key, $default), false, $resolver);
-        } catch (UnexpectedValueException $e) {
+        } catch (TypeAsResolutionException|UnexpectedValueException $e) {
             throw new ConfigAsResolutionException("config('$key') is not an array", 0, $e);
         }
     }
@@ -283,8 +283,8 @@ class ConfigAs
     public static function freshBool(string $key, ?bool $default = null, ?BoolResolver $resolver = null): bool
     {
         try {
-            return TypeAs::bool(Config::get($key, $default), false, $resolver);
-        } catch (UnexpectedValueException $e) {
+            return TypeAs::bool(Config::get($key, $default), $default, $resolver);
+        } catch (TypeAsResolutionException|UnexpectedValueException $e) {
             throw new ConfigAsResolutionException("config('$key') is not a boolean", 0, $e);
         }
     }
@@ -301,8 +301,8 @@ class ConfigAs
     public static function freshClass(string $expected, string $key, ?object $default = null, ?ClassResolver $resolver = null)
     {
         try {
-            return TypeAs::class($expected, Config::get($key), $default, $resolver);
-        } catch (UnexpectedValueException $e) {
+            return TypeAs::class($expected, Config::get($key, $default), $default, $resolver);
+        } catch (TypeAsResolutionException|UnexpectedValueException $e) {
             throw new ConfigAsResolutionException("config('$key') is not the class $expected", 0, $e);
         }
     }
@@ -314,7 +314,7 @@ class ConfigAs
     {
         try {
             return TypeAs::float(Config::get($key, $default), $default, $resolver);
-        } catch (UnexpectedValueException $e) {
+        } catch (TypeAsResolutionException|UnexpectedValueException $e) {
             throw new ConfigAsResolutionException("config('$key') is not a float", 0, $e);
         }
     }
@@ -326,7 +326,7 @@ class ConfigAs
     {
         try {
             return TypeAs::int(Config::get($key, $default), $default, $resolver);
-        } catch (UnexpectedValueException $e) {
+        } catch (TypeAsResolutionException|UnexpectedValueException $e) {
             throw new ConfigAsResolutionException("config('$key') is not an int", 0, $e);
         }
     }
@@ -338,7 +338,7 @@ class ConfigAs
     {
         try {
             return TypeAs::string(Config::get($key, $default), $default, $resolver);
-        } catch (TypeAsResolutionException $e) {
+        } catch (TypeAsResolutionException|UnexpectedValueException $e) {
             throw new ConfigAsResolutionException("config('$key') is not a string", 0, $e);
         }
     }
