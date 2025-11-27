@@ -8,6 +8,7 @@ Don't settle for **mixed** signatures from `config()` when you can enforce types
 [![License](https://img.shields.io/packagist/l/smpita/configas.svg?style=flat-square)](https://packagist.org/packages/smpita/configas)
 
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/smpita/configas/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/smpita/configas/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![Coverage Status](https://coveralls.io/repos/github/smpita/configas/badge.svg)](https://coveralls.io/github/smpita/configas)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/smpita/configas/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/smpita/configas/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsmpita%2Fconfigas.svg?type=shield&issueType=security)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsmpita%2Fconfigas?ref=badge_shield&issueType=security)
