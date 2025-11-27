@@ -81,7 +81,7 @@ class ConfigAs
      */
     public static function array(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
     {
-        if (isset(self::$arrays[$key])) {
+        if (array_key_exists($key, self::$arrays)) {
             return self::$arrays[$key];
         }
 
@@ -99,12 +99,12 @@ class ConfigAs
      */
     public static function bool(string $key, ?bool $default = null, ?BoolResolver $resolver = null): bool
     {
-        if (isset(self::$bools[$key])) {
+        if (array_key_exists($key, self::$bools)) {
             return self::$bools[$key];
         }
 
         try {
-            return self::$bools[$key] = self::freshbool($key, null, $resolver);
+            return self::$bools[$key] = self::freshBool($key, null, $resolver);
         } catch (ConfigAsResolutionException $e) {
             return is_null($default)
                 ? throw $e
@@ -123,7 +123,7 @@ class ConfigAs
      */
     public static function class(string $expected, string $key, ?object $default = null, ?ClassResolver $resolver = null)
     {
-        if (isset(self::$classes[$key])) {
+        if (array_key_exists($key, self::$classes)) {
             /** @var TClass */
             return self::$classes[$key];
         }
@@ -142,7 +142,7 @@ class ConfigAs
      */
     public static function float(string $key, ?float $default = null, ?FloatResolver $resolver = null): float
     {
-        if (isset(self::$floats[$key])) {
+        if (array_key_exists($key, self::$floats)) {
             return self::$floats[$key];
         }
 
@@ -160,7 +160,7 @@ class ConfigAs
      */
     public static function int(string $key, ?int $default = null, ?IntResolver $resolver = null): int
     {
-        if (isset(self::$ints[$key])) {
+        if (array_key_exists($key, self::$ints)) {
             return self::$ints[$key];
         }
 
@@ -178,7 +178,7 @@ class ConfigAs
      */
     public static function string(string $key, ?string $default = null, ?StringResolver $resolver = null): string
     {
-        if (isset(self::$strings[$key])) {
+        if (array_key_exists($key, self::$strings)) {
             return self::$strings[$key];
         }
 
@@ -193,7 +193,7 @@ class ConfigAs
 
     public static function nullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null): ?array
     {
-        if (isset(self::$nullableArrays[$key])) {
+        if (array_key_exists($key, self::$nullableArrays)) {
             return self::$nullableArrays[$key] ?? $default;
         }
 
@@ -204,7 +204,7 @@ class ConfigAs
 
     public static function nullableBool(string $key, ?bool $default = null, ?NullableBoolResolver $resolver = null): ?bool
     {
-        if (isset(self::$nullableBools[$key])) {
+        if (array_key_exists($key, self::$nullableBools)) {
             return self::$nullableBools[$key] ?? $default;
         }
 
@@ -222,7 +222,7 @@ class ConfigAs
      */
     public static function nullableClass(string $expected, string $key, ?object $default = null, ?NullableClassResolver $resolver = null)
     {
-        if (isset(self::$nullableClasses[$key])) {
+        if (array_key_exists($key, self::$nullableClasses)) {
             /** @var TClass */
             return self::$nullableClasses[$key] ?? $default;
         }
@@ -234,7 +234,7 @@ class ConfigAs
 
     public static function nullableFloat(string $key, ?float $default = null, ?NullableFloatResolver $resolver = null): ?float
     {
-        if (isset(self::$nullableFloats[$key])) {
+        if (array_key_exists($key, self::$nullableFloats)) {
             return self::$nullableFloats[$key] ?? $default;
         }
 
@@ -245,7 +245,7 @@ class ConfigAs
 
     public static function nullableInt(string $key, ?int $default = null, ?NullableIntResolver $resolver = null): ?int
     {
-        if (isset(self::$nullableInts[$key])) {
+        if (array_key_exists($key, self::$nullableInts)) {
             return self::$nullableInts[$key] ?? $default;
         }
 
@@ -256,7 +256,7 @@ class ConfigAs
 
     public static function nullableString(string $key, ?string $default = null, ?NullableStringResolver $resolver = null): ?string
     {
-        if (isset(self::$nullableStrings[$key])) {
+        if (array_key_exists($key, self::$nullableStrings)) {
             return self::$nullableStrings[$key] ?? $default;
         }
 
