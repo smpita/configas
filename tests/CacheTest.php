@@ -74,6 +74,20 @@ it('can cache ints', function () {
     expect($value)->not->toBe($new);
 });
 
+it('can cache strings', function () {
+    $key = 'testing.cache.nullable_string';
+    $cached = 'string';
+    $new = null;
+
+    Config::set($key, $cached);
+    ConfigAs::nullableString($key);
+    Config::set($key, $new);
+
+    $value = ConfigAs::nullableString($key);
+    expect($value)->toBe($cached);
+    expect($value)->not->toBe($new);
+});
+
 it('can cache nullable arrays', function () {
     $key = 'testing.cache.nullable_array';
     $cached = [];
@@ -158,20 +172,6 @@ it('can cache nullable strings', function () {
     expect($value)->not->toBe($new);
 });
 
-it('can cache strings', function () {
-    $key = 'testing.cache.nullable_string';
-    $cached = 'string';
-    $new = null;
-
-    Config::set($key, $cached);
-    ConfigAs::nullableString($key);
-    Config::set($key, $new);
-
-    $value = ConfigAs::nullableString($key);
-    expect($value)->toBe($cached);
-    expect($value)->not->toBe($new);
-});
-
 it('can read fresh arrays', function () {
     $key = 'testing.cache.array';
     $cached = ['cached'];
@@ -238,6 +238,20 @@ it('can read fresh ints', function () {
     Config::set($key, $new);
 
     $value = ConfigAs::freshInt($key);
+    expect($value)->toBe($new);
+    expect($value)->not->toBe($cached);
+});
+
+it('can read fresh strings', function () {
+    $key = 'testing.cache.nullable_string';
+    $cached = 'string';
+    $new = null;
+
+    Config::set($key, $cached);
+    ConfigAs::nullableString($key);
+    Config::set($key, $new);
+
+    $value = ConfigAs::freshNullableString($key);
     expect($value)->toBe($new);
     expect($value)->not->toBe($cached);
 });
@@ -322,20 +336,6 @@ it('can read fresh nullable strings', function () {
     Config::set($key, $new);
 
     $value = ConfigAs::freshString($key);
-    expect($value)->toBe($new);
-    expect($value)->not->toBe($cached);
-});
-
-it('can read fresh strings', function () {
-    $key = 'testing.cache.nullable_string';
-    $cached = 'string';
-    $new = null;
-
-    Config::set($key, $cached);
-    ConfigAs::nullableString($key);
-    Config::set($key, $new);
-
-    $value = ConfigAs::freshNullableString($key);
     expect($value)->toBe($new);
     expect($value)->not->toBe($cached);
 });
