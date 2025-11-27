@@ -53,7 +53,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: mbstring, pdo, sqlite, pdo_sqlite, curl, dom, zip, json, intl, fileinfo
-          coverage: none
+          coverage: pcov
 
       - name: Setup problem matchers
         run: |
