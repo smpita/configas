@@ -5,6 +5,74 @@ use Smpita\ConfigAs\Exceptions\ConfigAsResolutionException;
 use Smpita\ConfigAs\Tests\Stubs\ClassStub;
 use Smpita\TypeAs\Contracts\BoolResolver;
 
+function staticArrayTest(array $value): array
+{
+    return $value;
+}
+
+function staticBoolTest(bool $value): bool
+{
+    return $value;
+}
+
+function staticClassTest(ClassStub $value): ClassStub
+{
+    return $value;
+}
+
+function staticFloatTest(float $value): float
+{
+    return $value;
+}
+
+function staticIntTest(int $value): int
+{
+    return $value;
+}
+
+function staticNullableArrayTest(?array $value): ?array
+{
+    return $value;
+}
+
+function staticNullableBoolTest(?bool $value): ?bool
+{
+    return $value;
+}
+
+function staticNullableClassTest(?ClassStub $value): ?ClassStub
+{
+    return $value;
+}
+
+function staticNullableFloatTest(?float $value): ?float
+{
+    return $value;
+}
+
+function staticNullableIntTest(?int $value): ?int
+{
+    return $value;
+}
+
+function staticNullableStringTest(?string $value): ?string
+{
+    return $value;
+}
+
+function staticStringTest(string $value): string
+{
+    return $value;
+}
+
+class FakeBoolResolverStub implements BoolResolver
+{
+    public function resolve(mixed $value, ?bool $default = null): bool
+    {
+        throw new UnexpectedValueException();
+    }
+}
+
 it('can handle arrays', function () {
     $value = staticArrayTest(ConfigAs::array('testing.array'));
     expect($value)->toBeArray();
@@ -189,71 +257,3 @@ it('helper can handle arrays', function () {
     $value = staticArrayTest(\Smpita\ConfigAs\configArray('testing.array'));
     expect($value)->toBeArray();
 });
-
-function staticArrayTest(array $value): array
-{
-    return $value;
-}
-
-function staticBoolTest(bool $value): bool
-{
-    return $value;
-}
-
-function staticClassTest(ClassStub $value): ClassStub
-{
-    return $value;
-}
-
-function staticFloatTest(float $value): float
-{
-    return $value;
-}
-
-function staticIntTest(int $value): int
-{
-    return $value;
-}
-
-function staticNullableArrayTest(?array $value): ?array
-{
-    return $value;
-}
-
-function staticNullableBoolTest(?bool $value): ?bool
-{
-    return $value;
-}
-
-function staticNullableClassTest(?ClassStub $value): ?ClassStub
-{
-    return $value;
-}
-
-function staticNullableFloatTest(?float $value): ?float
-{
-    return $value;
-}
-
-function staticNullableIntTest(?int $value): ?int
-{
-    return $value;
-}
-
-function staticNullableStringTest(?string $value): ?string
-{
-    return $value;
-}
-
-function staticStringTest(string $value): string
-{
-    return $value;
-}
-
-class FakeBoolResolverStub implements BoolResolver
-{
-    public function resolve(mixed $value, ?bool $default = null): bool
-    {
-        throw new UnexpectedValueException();
-    }
-}

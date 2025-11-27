@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Config;
 use Smpita\ConfigAs\ConfigAs;
 use Smpita\ConfigAs\Tests\Stubs\ClassStub;
 
+class CacheClassStub extends ClassStub
+{
+}
+
 it('can cache arrays', function () {
     $key = 'testing.cache.array';
     $cached = ['cached'];
@@ -604,7 +608,3 @@ it('can forget nullable strings', function () {
     expect(ConfigAs::nullableString($key))->toBe($new);
     expect(ConfigAs::nullableString($key))->not->toBe($value);
 });
-
-class CacheClassStub extends ClassStub
-{
-}
