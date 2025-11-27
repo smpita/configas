@@ -88,7 +88,6 @@ it('can cache strings', function () {
     expect($value)->not->toBe($new);
 });
 
-
 it('can cache nullable arrays', function () {
     $key = 'testing.cache.nullable_array';
     $cached = [];
