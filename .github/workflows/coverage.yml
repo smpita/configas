@@ -30,7 +30,7 @@ jobs:
         uses: ramsey/composer-install@v3
 
       - name: Run tests with coverage
-        run: vendor/bin/pest --ci --coverage-cobertura=coverage.xml
+        run: vendor/bin/pest --parallel --ci --coverage-cobertura=coverage.xml
 
       - name: Upload coverage to Coveralls
         uses: coverallsapp/github-action@v2
