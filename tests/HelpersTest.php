@@ -1,23 +1,23 @@
 <?php
 
 use Smpita\ConfigAs\ConfigAs;
+use Smpita\ConfigAs\Tests\Stubs\ClassStub;
+use Smpita\ConfigAs\Tests\Stubs\FakeBoolResolverStub;
+use Smpita\ConfigAs\Exceptions\ConfigAsResolutionException;
+
 use function Smpita\ConfigAs\configAs;
 use function Smpita\ConfigAs\configInt;
-
 use function Smpita\ConfigAs\configBool;
 use function Smpita\ConfigAs\configArray;
 use function Smpita\ConfigAs\configClass;
 use function Smpita\ConfigAs\configFloat;
 use function Smpita\ConfigAs\configString;
-use Smpita\ConfigAs\Tests\Stubs\ClassStub;
 use function Smpita\ConfigAs\configNullableInt;
 use function Smpita\ConfigAs\configNullableBool;
 use function Smpita\ConfigAs\configNullableArray;
 use function Smpita\ConfigAs\configNullableClass;
 use function Smpita\ConfigAs\configNullableFloat;
 use function Smpita\ConfigAs\configNullableString;
-use Smpita\ConfigAs\Tests\Stubs\FakeBoolResolverStub;
-use Smpita\ConfigAs\Exceptions\ConfigAsResolutionException;
 
 it('can help itself', function () {
     expect(configAs())->toBeInstanceOf(ConfigAs::class);
