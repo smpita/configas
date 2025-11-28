@@ -1,22 +1,23 @@
 <?php
 
 use Smpita\ConfigAs\ConfigAs;
-use Smpita\ConfigAs\Exceptions\ConfigAsResolutionException;
 use Smpita\ConfigAs\Tests\Stubs\ClassStub;
+use Smpita\ConfigAs\Tests\Stubs\FakeBoolResolverStub;
+use Smpita\ConfigAs\Exceptions\ConfigAsResolutionException;
 
-use function Smpita\ConfigAs\configArray;
 use function Smpita\ConfigAs\configAs;
+use function Smpita\ConfigAs\configInt;
 use function Smpita\ConfigAs\configBool;
+use function Smpita\ConfigAs\configArray;
 use function Smpita\ConfigAs\configClass;
 use function Smpita\ConfigAs\configFloat;
-use function Smpita\ConfigAs\configInt;
-use function Smpita\ConfigAs\configNullableArray;
+use function Smpita\ConfigAs\configString;
+use function Smpita\ConfigAs\configNullableInt;
 use function Smpita\ConfigAs\configNullableBool;
+use function Smpita\ConfigAs\configNullableArray;
 use function Smpita\ConfigAs\configNullableClass;
 use function Smpita\ConfigAs\configNullableFloat;
-use function Smpita\ConfigAs\configNullableInt;
 use function Smpita\ConfigAs\configNullableString;
-use function Smpita\ConfigAs\configString;
 
 it('can help itself', function () {
     expect(configAs())->toBeInstanceOf(ConfigAs::class);
@@ -47,6 +48,11 @@ it('can handle ints', function () {
     expect($value)->toBeInt();
 });
 
+it('can handle strings', function () {
+    $value = staticStringTest(configString('testing.float'));
+    expect($value)->toBeString();
+});
+
 it('can handle nullable arrays', function () {
     $value = staticNullableArrayTest(configNullableArray('testing.nullable'));
     expect($value)->toBeNull();
@@ -75,11 +81,6 @@ it('can handle nullable ints', function () {
 it('can handle nullable strings', function () {
     $value = staticNullableStringTest(configNullableString('testing.nullable'));
     expect($value)->toBeNull();
-});
-
-it('can handle strings', function () {
-    $value = staticStringTest(configString('testing.float'));
-    expect($value)->toBeString();
 });
 
 it('throws exception when not array', function () {
