@@ -249,11 +249,3 @@ function staticStringTest(string $value): string
 {
     return $value;
 }
-
-class FakeBoolResolverStub implements BoolResolver
-{
-    public function resolve(mixed $value, ?bool $default = null): bool
-    {
-        throw new UnexpectedValueException();
-    }
-}
