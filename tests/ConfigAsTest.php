@@ -73,6 +73,76 @@ it('can handle array default', function () {
     expect(ConfigAs::array($key)); // throws exception without default, does not cache default
 })->throws(ConfigAsResolutionException::class);
 
+it('can handle wrap values to array', function () {
+    $array = 'testing.array';
+    $bool = 'testing.bool';
+    $class = 'testing.class';
+    $float = 'testing.float';
+    $int = 'testing.int';
+    $string = 'testing.string';
+
+    // Doesn't wrap because it's already an array
+    expect(ConfigAs::array($array, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe(ConfigAs::array($array));
+    expect(ConfigAs::nullableArray($array, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe(ConfigAs::nullableArray($array));
+
+    // Wraps because it's not an array
+    expect(ConfigAs::array($bool, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([ConfigAs::bool($bool)]);
+    expect(ConfigAs::array($class, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([ConfigAs::class(ClassStub::class, $class)]);
+    expect(ConfigAs::array($float, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([ConfigAs::float($float)]);
+    expect(ConfigAs::array($int, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([ConfigAs::int($int)]);
+    expect(ConfigAs::array($string, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([ConfigAs::string($string)]);
+
+    // Wraps because it's not an array
+    expect(ConfigAs::nullableArray($bool, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([ConfigAs::nullableBool($bool)]);
+    expect(ConfigAs::nullableArray($class, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([ConfigAs::nullableClass(ClassStub::class, $class)]);
+    expect(ConfigAs::nullableArray($float, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([ConfigAs::nullableFloat($float)]);
+    expect(ConfigAs::nullableArray($int, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([ConfigAs::nullableInt($int)]);
+    expect(ConfigAs::nullableArray($string, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([ConfigAs::nullableString($string)]);
+
+    // Shows the danger of this option
+    expect(ConfigAs::nullableArray('testing.invalid', wrap: true))
+        ->not()->toBeNull()
+        ->toBeArray()
+        ->not()->toBe([])
+        ->toBe([null]);
+});
+
 it('can handle bool default', function () {
     $key = 'testing.default.bool';
     $default = false;

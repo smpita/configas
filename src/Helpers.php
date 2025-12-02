@@ -24,9 +24,9 @@ function configAs(): ConfigAs
 /**
  * @throws ConfigAsResolutionException
  */
-function configArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
+function configArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null, ?bool $wrap = false): array
 {
-    return ConfigAs::array($key, $default, $resolver);
+    return ConfigAs::array($key, $default, $resolver, $wrap);
 }
 
 /**
@@ -67,9 +67,17 @@ function configInt(string $key, ?int $default = null, ?IntResolver $resolver = n
     return ConfigAs::int($key, $default, $resolver);
 }
 
-function configNullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null): ?array
+/**
+ * @throws ConfigAsResolutionException
+ */
+function configString(string $key, ?string $default = null, ?StringResolver $resolver = null): string
 {
-    return ConfigAs::nullableArray($key, $default, $resolver);
+    return ConfigAs::string($key, $default, $resolver);
+}
+
+function configNullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null, ?bool $wrap = false): ?array
+{
+    return ConfigAs::nullableArray($key, $default, $resolver, $wrap);
 }
 
 function configNullableBool(string $key, ?bool $default = null, ?NullableBoolResolver $resolver = null): ?bool
@@ -102,12 +110,4 @@ function configNullableInt(string $key, ?int $default = null, ?NullableIntResolv
 function configNullableString(string $key, ?string $default = null, ?NullableStringResolver $resolver = null): ?string
 {
     return ConfigAs::nullableString($key, $default, $resolver);
-}
-
-/**
- * @throws ConfigAsResolutionException
- */
-function configString(string $key, ?string $default = null, ?StringResolver $resolver = null): string
-{
-    return ConfigAs::string($key, $default, $resolver);
 }

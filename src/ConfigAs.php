@@ -79,14 +79,14 @@ class ConfigAs
     /**
      * @throws ConfigAsResolutionException
      */
-    public static function array(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
+    public static function array(string $key, ?array $default = null, ?ArrayResolver $resolver = null, ?bool $wrap = false): array
     {
         if (array_key_exists($key, self::$arrays)) {
             return self::$arrays[$key];
         }
 
         try {
-            return self::$arrays[$key] = self::freshArray($key, null, $resolver);
+            return self::$arrays[$key] = self::freshArray($key, null, $resolver, $wrap);
         } catch (ConfigAsResolutionException $e) {
             if (is_null($default)) {
                 throw $e;
@@ -203,13 +203,13 @@ class ConfigAs
         }
     }
 
-    public static function nullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null): ?array
+    public static function nullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null, ?bool $wrap = false): ?array
     {
         if (array_key_exists($key, self::$nullableArrays)) {
             return self::$nullableArrays[$key] ?? $default;
         }
 
-        self::$nullableArrays[$key] = self::freshNullableArray($key, null, $resolver);
+        self::$nullableArrays[$key] = self::freshNullableArray($key, null, $resolver, $wrap);
 
         return self::$nullableArrays[$key] ?? $default;
     }
@@ -280,10 +280,10 @@ class ConfigAs
     /**
      * @throws ConfigAsResolutionException
      */
-    public static function freshArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
+    public static function freshArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null, ?bool $wrap = false): array
     {
         try {
-            return TypeAs::array(Config::get($key, $default), false, $resolver);
+            return TypeAs::array(Config::get($key, $default), $default, $resolver, $wrap);
         } catch (TypeAsResolutionException|UnexpectedValueException $e) {
             throw new ConfigAsResolutionException("config('$key') is not an array", $e->getCode(), $e);
         }
@@ -355,9 +355,9 @@ class ConfigAs
         }
     }
 
-    public static function freshNullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null): ?array
+    public static function freshNullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null, ?bool $wrap = false): ?array
     {
-        return TypeAs::nullableArray(Config::get($key, $default), false, $resolver);
+        return TypeAs::nullableArray(Config::get($key, $default), $default, $resolver, $wrap);
     }
 
     public static function freshNullableBool(string $key, ?bool $default = null, ?NullableBoolResolver $resolver = null): ?bool

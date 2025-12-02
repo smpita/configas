@@ -106,3 +106,73 @@ it('throws exception when not int', function () {
 it('throws exception when not string', function () {
     configString('testing.nullable');
 })->throws(ConfigAsResolutionException::class);
+
+it('can handle wrap values to array', function () {
+    $array = 'testing.array';
+    $bool = 'testing.bool';
+    $class = 'testing.class';
+    $float = 'testing.float';
+    $int = 'testing.int';
+    $string = 'testing.string';
+
+    // Doesn't wrap because it's already an array
+    expect(configArray($array, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe(ConfigAs::array($array));
+    expect(configNullableArray($array, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe(configNullableArray($array));
+
+    // Wraps because it's not an array
+    expect(configArray($bool, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([configBool($bool)]);
+    expect(configArray($class, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([configClass(ClassStub::class, $class)]);
+    expect(configArray($float, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([configFloat($float)]);
+    expect(configArray($int, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([configInt($int)]);
+    expect(configArray($string, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([configString($string)]);
+
+    // Wraps because it's not an array
+    expect(configNullableArray($bool, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([configNullableBool($bool)]);
+    expect(configNullableArray($class, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([configNullableClass(ClassStub::class, $class)]);
+    expect(configNullableArray($float, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([configNullableFloat($float)]);
+    expect(configNullableArray($int, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([configNullableInt($int)]);
+    expect(configNullableArray($string, wrap: true))
+        ->toBeArray()
+        ->not()->toBeEmpty()
+        ->toBe([configNullableString($string)]);
+
+    // Shows the danger of this option
+    expect(configNullableArray('testing.invalid', wrap: true))
+        ->not()->toBeNull()
+        ->toBeArray()
+        ->not()->toBe([])
+        ->toBe([null]);
+});

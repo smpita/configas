@@ -5,11 +5,11 @@
 #### Array
 
 ```php
-Smpita\ConfigAs::array(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
+Smpita\ConfigAs::array(string $key, ?array $default = null, ?ArrayResolver $resolver = null, ?bool $wrap = false): array
 ```
 
 ```php
-Smpita\ConfigAs::nullableArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null): ?array
+Smpita\ConfigAs::nullableArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null, ?bool $wrap = false): ?array
 ```
 
 #### Boolean
@@ -73,7 +73,7 @@ Smpita\ConfigAs::nullableString(mixed $value, ?string $default = null, ?Nullable
 #### Typed
 
 ```php
-\Smpita\ConfigAs\configArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
+\Smpita\ConfigAs\configArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null, ?bool $wrap = false): array
 ```
 
 ```php
@@ -93,7 +93,7 @@ Smpita\ConfigAs::nullableString(mixed $value, ?string $default = null, ?Nullable
 ```
 
 ```php
-\Smpita\ConfigAs\configNullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null): ?array
+\Smpita\ConfigAs\configNullableArray(string $key, ?array $default = null, ?NullableArrayResolver $resolver = null, ?bool $wrap = false): ?array
 ```
 
 ```php
@@ -127,11 +127,11 @@ Smpita\ConfigAs::nullableString(mixed $value, ?string $default = null, ?Nullable
 #### Array
 
 ```php
-Smpita\ConfigAs::freshArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
+Smpita\ConfigAs::freshArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null, ?bool $wrap = false): array
 ```
 
 ```php
-Smpita\ConfigAs::freshNullableArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null): ?array
+Smpita\ConfigAs::freshNullableArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null, ?bool $wrap = false): ?array
 ```
 
 #### Boolean
