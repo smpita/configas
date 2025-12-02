@@ -97,7 +97,7 @@ Smpita\ConfigAs::nullableString(mixed $value, ?string $default = null, ?Nullable
 ```
 
 ```php
-\Smpita\ConfigAs\configNullableBool(string $key, ?bool $default = null, ?NullableBoolResolver $resolver = null, ?bool $wrap = false): ?bool
+\Smpita\ConfigAs\configNullableBool(string $key, ?bool $default = null, ?NullableBoolResolver $resolver = null): ?bool
 ```
 
 ```php
