@@ -24,7 +24,7 @@ function configAs(): ConfigAs
 /**
  * @throws ConfigAsResolutionException
  */
-function configArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null, ): array
+function configArray(string $key, ?array $default = null, ?ArrayResolver $resolver = null): array
 {
     return ConfigAs::array($key, $default, $resolver);
 }
